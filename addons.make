@@ -1,0 +1,8 @@
+ofxAssimpModelLoader
+ofxNetwork
+ofxXmlSettings
+ofxAppUtils
+ofxNoisepp
+ofxPostProcessing
+ofxRayTriangleIntersection
+ofxUI
