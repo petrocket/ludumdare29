@@ -30,6 +30,7 @@ public:
     float patrolRadius;
     float totalPatrolTime; // in seconds
     float rotation;
+    bool loaded;
 };
 
 #endif /* defined(__ludumdare29__ofPuffer__) */

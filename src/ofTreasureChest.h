@@ -23,6 +23,7 @@ public:
     
     bool isOpen;
     ofVec3f position;
+    bool loaded;
 };
 
 #endif /* defined(__ludumdare29__ofTreasureChest__) */

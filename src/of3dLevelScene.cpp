@@ -226,14 +226,21 @@ void of3dLevelScene::draw()
     // player
     player->draw();
     
+    float drawDistSqrd = 100.f;
     // chests
     for(int i = 0; i < chests.size(); i++) {
-        chests.at(i)->draw();
-    }    
+        // prevent crash? too many objects??
+        if(chests.at(i)->position.distanceSquared(player->position) < drawDistSqrd) {
+            chests.at(i)->draw();
+        }
+    }
     
     // enemies
     for(int i = 0; i < enemies.size(); i++) {
-        enemies.at(i)->draw();
+        // prevent crash? too many objects??
+        if(enemies.at(i)->position.distanceSquared(player->position) < drawDistSqrd) {
+            enemies.at(i)->draw();
+        }
     }
     
     glDisable(GL_FOG);

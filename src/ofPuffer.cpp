@@ -17,20 +17,27 @@ ofPuffer::ofPuffer(ofVec3f position) :
 ofxAssimpModelLoader(),
 totalPatrolTime(30.f),
 patrolRadius(3.f),
+loaded(false),
 rotation(90.f),
 isOpen(false),
 position(position),
 patrolCenter(position)
 {
-    if(loadModel("puffer.dae")) {
-        setScale(0.0015, 0.0015, 0.0015);
-        setRotation(0, 180, 0, 0, 1);
-        playAllAnimations();
-    }
+    // causes crash!
+//    if(loadModel("puffer.dae")) {
+//        setScale(0.0015, 0.0015, 0.0015);
+//        setRotation(0, 180, 0, 0, 1);
+//        playAllAnimations();
+//    }
 }
 
 void ofPuffer::update()
 {
+    if(!loaded) {
+        
+        return;
+    }
+    
     if(this->getNumMeshes() > 0) {
         ofxAssimpModelLoader::update();
     }
@@ -44,6 +51,17 @@ void ofPuffer::update()
 
 void ofPuffer::draw()
 {
+    if(!loaded) {
+        // prevent crash? too many objects??        
+        if(loadModel("puffer.dae")) {
+            setScale(0.0015, 0.0015, 0.0015);
+            setRotation(0, 180, 0, 0, 1);
+            loaded = true;
+//            playAllAnimations();
+        }
+    }
+    
+    if(!loaded) return;
     ofPushMatrix();
     ofTranslate(position);
     ofRotateY(rotation);

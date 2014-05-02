@@ -16,13 +16,10 @@ ofTreasureChest::ofTreasureChest() : ofxAssimpModelLoader()
 ofTreasureChest::ofTreasureChest(ofVec3f position) :
     ofxAssimpModelLoader(),
     isOpen(false),
+    loaded(false),
     position(position)
 {
-    if(loadModel("chest.dae")) {
-        setScale(0.002, 0.002, 0.002);
-        setRotation(0, -90, 1, 0, 0);
-        setPausedForAllAnimations(true);
-    }
+
 }
 
 void ofTreasureChest::update()
@@ -32,6 +29,18 @@ void ofTreasureChest::update()
 
 void ofTreasureChest::draw()
 {
+    if(!loaded) {
+        // prevent crash? too many objects??        
+        if(loadModel("chest.dae")) {
+            setScale(0.002, 0.002, 0.002);
+            setRotation(0, -90, 1, 0, 0);
+            setPausedForAllAnimations(true);
+            loaded = true;
+        }
+    }
+    
+    if(!loaded) return;
+    
     ofPushMatrix();
     ofTranslate(position);
     ofRotateY(170);
