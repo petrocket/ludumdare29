@@ -52,7 +52,7 @@ void ofPuffer::update()
 void ofPuffer::draw()
 {
     if(!loaded) {
-        // prevent crash? too many objects??        
+        // prevent crash? too many objects??
         if(loadModel("puffer.dae")) {
             setScale(0.0015, 0.0015, 0.0015);
             setRotation(0, 180, 0, 0, 1);
